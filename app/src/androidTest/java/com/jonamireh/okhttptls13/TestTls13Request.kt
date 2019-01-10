@@ -75,8 +75,10 @@ class TestTls13Request {
                 //"https://tls13.akamai.io/",
 
                 "https://swifttls.org/",
+
                 // https://www.ssllabs.com/ssltest/analyze.html?d=googleapis.com&s=2607%3af8b0%3a4005%3a804%3a0%3a0%3a0%3a2004&latest
                 //"https://www.googleapis.com/robots.txt",
+
                 "https://graph.facebook.com/robots.txt"
 
                 // https://www.ssllabs.com/ssltest/analyze.html?d=api.twitter.com&s=104.244.42.66&hideResults=on&latest
