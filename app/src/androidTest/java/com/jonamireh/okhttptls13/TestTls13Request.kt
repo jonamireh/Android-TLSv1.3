@@ -58,7 +58,7 @@ class TestTls13Request {
                 "https://tls13.crypto.mozilla.org/",
 
                 // cert expired
-                /*"https://tls.ctf.network/robots.txt",*/
+                //"https://tls.ctf.network/robots.txt",
 
                 "https://rustls.jbp.io/",
 
