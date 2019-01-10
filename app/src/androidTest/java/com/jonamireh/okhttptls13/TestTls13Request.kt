@@ -114,7 +114,7 @@ class TestTls13Request {
 
         return OkHttpClient.Builder()
                 .connectionSpecs(Arrays.asList(*specs))
-                .sslSocketFactory(Tls13SocketFactory(defaultSocketFactory), defaultTrustManager)
+                .sslSocketFactory(defaultSocketFactory, defaultTrustManager)
                 .build()
     }
 
