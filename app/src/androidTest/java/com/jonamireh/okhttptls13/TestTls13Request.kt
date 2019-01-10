@@ -39,7 +39,7 @@ class TestTls13Request {
 
     @Test
     fun testTls13() {
-        Security.insertProviderAt(Conscrypt.newProviderBuilder().build(), 1)
+        Security.insertProviderAt(Conscrypt.newProviderBuilder().provideTrustManager().build(), 1)
 
         println("Running tests using " + Platform.get() + " " + System.getProperty("java.vm.version"))
 
