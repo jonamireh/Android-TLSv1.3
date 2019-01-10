@@ -6,9 +6,11 @@ import okhttp3.internal.platform.Platform
 import org.conscrypt.Conscrypt
 import org.junit.Test
 import java.security.KeyStore
+import java.security.SecureRandom
 import java.security.Security
 import java.util.*
-import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.KeyManager
+import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 
@@ -73,7 +75,8 @@ class TestTls13Request {
                 //"https://tls13.akamai.io/",
 
                 "https://swifttls.org/",
-                "https://www.googleapis.com/robots.txt",
+                // https://www.ssllabs.com/ssltest/analyze.html?d=googleapis.com&s=2607%3af8b0%3a4005%3a804%3a0%3a0%3a0%3a2004&latest
+                //"https://www.googleapis.com/robots.txt",
                 "https://graph.facebook.com/robots.txt"
 
                 // https://www.ssllabs.com/ssltest/analyze.html?d=api.twitter.com&s=104.244.42.66&hideResults=on&latest
@@ -99,11 +102,13 @@ class TestTls13Request {
     }
 
     private fun buildClient(vararg specs: ConnectionSpec): OkHttpClient {
-        val defaultSocketFactory = SSLSocketFactory.getDefault() as SSLSocketFactory
         val defaultTrustManager = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).let {
                 it.init(null as KeyStore?)
                 it.trustManagers[0] as X509TrustManager
         }
+        val defaultSocketFactory = SSLContext.getInstance(TlsVersion.TLS_1_3.javaName()).apply {
+            init(null as Array<KeyManager>?, arrayOf(defaultTrustManager), null as SecureRandom?)
+        }.socketFactory
 
         return OkHttpClient.Builder()
                 .connectionSpecs(Arrays.asList(*specs))
