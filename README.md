@@ -1,2 +1,3 @@
 # Android-TLSv1.3
-Demo of TLSv1.3 with Conscrypt &amp; OkHttp
+
+To see the demo in action, simply run the `TestTls13Request` instrumenation test
